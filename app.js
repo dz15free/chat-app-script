@@ -1,62 +1,36 @@
-  // Import Firebase functions
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-analytics.js";
-        import { 
-            getAuth, 
-            createUserWithEmailAndPassword, 
-            signInWithEmailAndPassword, 
-            sendPasswordResetEmail, 
-            updateProfile, 
-            onAuthStateChanged, 
-            signOut 
-        } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
-        import { 
-            getDatabase, 
-            ref, 
-            push, 
-            onValue, 
-            set, 
-            remove,
-            serverTimestamp,
-            get,
-            off
-        } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
+// ✅ نسخة بدون import - متوافقة مع بلوجر وبدون type="module"
 
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDhjQe7B6XPhHWpyLOa2DT4R7k9yt5-CE0",
-            authDomain: "studylinkchatapp.firebaseapp.com",
-            databaseURL: "https://studylinkchatapp-default-rtdb.firebaseio.com",
-            projectId: "studylinkchatapp",
-            storageBucket: "studylinkchatapp.firebasestorage.app",
-            messagingSenderId: "824488539257",
-            appId: "1:824488539257:web:00da8162fe90c30d3550a8",
-            measurementId: "G-Z1G0E0B233"
-        };
+// أولاً: تأكد أنك أضفت مكتبات Firebase في HTML قبل هذا السكربت:
+// <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js"></script>
+// <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-analytics.js"></script>
+// <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js"></script>
+// <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js"></script>
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const auth = getAuth(app);
-        const database = getDatabase(app);
+// ثانياً: كود التهيئة بدون import
+const firebaseConfig = {
+    apiKey: "AIzaSyDhjQe7B6XPhHWpyLOa2DT4R7k9yt5-CE0",
+    authDomain: "studylinkchatapp.firebaseapp.com",
+    databaseURL: "https://studylinkchatapp-default-rtdb.firebaseio.com",
+    projectId: "studylinkchatapp",
+    storageBucket: "studylinkchatapp.firebasestorage.app",
+    messagingSenderId: "824488539257",
+    appId: "1:824488539257:web:00da8162fe90c30d3550a8",
+    measurementId: "G-Z1G0E0B233"
+};
 
-        // Global variables
-        window.auth = auth;
-        window.database = database;
-        window.currentUser = null;
-        window.currentRoom = null;
-        window.currentVideoId = null;
-        window.lastMessageCount = 0;
-        window.lastUserCount = 0;
-        window.youtubePlayer = null;
-        window.isVideoSyncing = false;
-        window.chatTooltipShown = false;
-        window.videoSyncListeners = [];
-        window.syncCheckInterval = null;
-        window.unreadMessageCount = 0; // NEW: Track unread messages
-        window.isChatOpen = false; // NEW: Track chat state
+const app = firebase.initializeApp(firebaseConfig);
+const analytics = firebase.analytics();
+const auth = firebase.auth();
+const database = firebase.database();
 
-        // Enhanced notification sounds
+// ✅ اجعل كل شيء متاحاً للعالم window
+window.auth = auth;
+window.database = database;
+window.firebase = firebase;
+
+// 🧠 الآن انسخ كل الدوال من ملفك السابق (scs.txt)
+// وألصقها هنا كما هي، بدون استخدام import
+ // Enhanced notification sounds
         const notificationSound = new Audio('https://lit2talks.com/tool/uploads/686dbc50ab779_mixkit-correct-answer-tone-2870.mp3');
         const joinSound = new Audio('https://lit2talks.com/tool/uploads/686dbc50ab779_mixkit-correct-answer-tone-2870.mp3');
         
@@ -1162,7 +1136,9 @@
                 });
             }
         });
-// Make main functions globally accessible
+// 💡 بعد الانتهاء، تأكد أن جميع الدوال مثل loginUser، registerUser...
+// تضاف في النهاية إلى window:
+
 window.loginUser = loginUser;
 window.registerUser = registerUser;
 window.resetPassword = resetPassword;
@@ -1176,3 +1152,8 @@ window.syncPause = syncPause;
 window.toggleFullscreen = toggleFullscreen;
 window.exitRoom = exitRoom;
 window.toggleDarkMode = toggleDarkMode;
+
+// 📌 تأكد أنك تستخدم هذا السكربت في بلوجر هكذا:
+// <script src="https://dz15free.github.io/chat-app-script/app.js"></script>
+// بدون type="module"
+
