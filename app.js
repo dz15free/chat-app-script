@@ -1162,3 +1162,17 @@
                 });
             }
         });
+// Make main functions globally accessible
+window.loginUser = loginUser;
+window.registerUser = registerUser;
+window.resetPassword = resetPassword;
+window.joinRoom = joinRoom;
+window.createRoom = createRoom;
+window.sendMessage = sendMessage;
+window.handleEnterKey = handleEnterKey;
+window.loadVideo = loadVideo;
+window.syncPlay = syncPlay;
+window.syncPause = syncPause;
+window.toggleFullscreen = toggleFullscreen;
+window.exitRoom = exitRoom;
+window.toggleDarkMode = toggleDarkMode;
